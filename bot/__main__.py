@@ -1,5 +1,5 @@
 from aiogram import Bot, Dispatcher
-from aiogram.utils import executor       
+from aiogram.utils import executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from core.config import settings

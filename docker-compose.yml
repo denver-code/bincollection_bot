@@ -1,0 +1,17 @@
+version: '2'
+services:
+  bincollection_bot:
+    build: .
+    volumes:
+      - .:/bincollection_bot
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:5-alpine
+    restart: on-failure
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
