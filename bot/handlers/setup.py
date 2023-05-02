@@ -1,4 +1,4 @@
-from aiogram import types, dispatcher, Dispatcher
+from aiogram import Dispatcher
 
 from bot.handlers import start
 

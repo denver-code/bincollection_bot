@@ -1,12 +1,10 @@
-from typing import List, Union
-
-from pydantic import AnyHttpUrl, BaseSettings, validator
+from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
     PROJECT_NAME: str
     TOKEN: str
-    
+
     class Config:
         case_sensitive = True
         env_file = ".env"
