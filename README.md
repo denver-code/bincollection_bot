@@ -19,11 +19,17 @@ or
 docker-compose up --build -d
 ```
 # ▹ Run #
+> [!NOTE] Make sure you have installed poetry on your machine (pip3 install poetry)
 ``` Bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip3 install -r requirements.txt
-python3 -m bot
+poetry install
+poetry run python3 -m bot
+```
+
+# Edit project in VS Code
+``` bash
+poetry install
+poetry shell
+code .
 ```
 
 ## Concept scheme of bot
