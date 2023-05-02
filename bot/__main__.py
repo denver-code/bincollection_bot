@@ -6,11 +6,16 @@ from core.config import settings
 
 from bot.handlers import setup as handlers_setup
 
+
 bot = Bot(token=settings.TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
 
-if __name__ == '__main__':
+def main():
     handlers_setup.setup(dp)
     executor.start_polling(dp)
+
+
+if __name__ == '__main__':
+    main()

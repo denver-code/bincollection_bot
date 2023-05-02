@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["denver-code <csigorek@gmail.com>"]
 readme = "README.md"
-# packages = [{include = "bincollection_bot"}]
+
 
 [tool.poetry.dependencies]
 python = "^3.11"
