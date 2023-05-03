@@ -28,6 +28,7 @@ yarl = "^1.9.2"
 redis = "^4.5.4"
 bs4 = "^0.0.1"
 requests = "^2.29.0"
+lxml = "^4.9.2"
 
 [build-system]
 requires = ["poetry-core"]

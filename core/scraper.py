@@ -34,16 +34,16 @@ def expand_for_json(results: list[ScrapeResult]) -> list[dict]:
 
 
 class Scraper:
+    BASE_URL: str = "https://www.adur-worthing.gov.uk"
     def scrape(
             self,
             url: str =
-            "https://www.adur-worthing.gov.uk/bin-day/\
-                ?brlu-selected-address=100061879527"
+            "/bin-day/?brlu-selected-address=200004014421"
     ) -> list[ScrapeResult]:
         """scrapes the table data from the council website"""
-        r = requests.get(url)
+        r = requests.get(self.BASE_URL + url)
         if r.status_code != 200:
-            raise ValueError("Could not access website")
+            return False
         soup = BeautifulSoup(r.text, "lxml")
         table = soup.find_all('table')[0]
 
@@ -51,6 +51,19 @@ class Scraper:
         rows = table.find_all('tr')
         results = [parse_row(row) for row in rows[1:-1]]
         return results
+    
+
+    def scrape_calendar_link(
+            self,
+            url: str = "/bin-day/?brlu-selected-address=200004014421"
+    ):
+        r = requests.get(self.BASE_URL + url)
+        if r.status_code != 200:
+            return False
+        soup = BeautifulSoup(r.text, "lxml")
+        a = soup.find_all("a", {"class": "file-pdf"})[0]
+        
+        return a["href"]
 
 
 def parse_row(row: Tag) -> ScrapeResult:
