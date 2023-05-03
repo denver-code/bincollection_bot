@@ -25,5 +25,17 @@ def logout(id: str):
     r.delete(id)
 
 
+def is_subscribed(id: str) -> bool:
+    return bool(get_user(id).get("is_subscribed"))
+
+
+def toggle_subscription(id: str) -> bool:
+    _user = get_user(id)
+    _user["is_subscribed"] = not bool(_user["is_subscribed"])
+    set_user(id, _user)
+
+    return _user["is_subscribed"]
+
+
 def is_user_exist(id: int) -> bool:
     return bool(get_user(id))

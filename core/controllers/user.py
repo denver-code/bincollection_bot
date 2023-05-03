@@ -20,7 +20,7 @@ async def set_user_location_event(message: types.Message, state: dispatcher.FSMC
         return await message.answer("Welcome in our team! Now you able to use every function. Type /menu to check them out!")
 
     _user = get_user(message.from_id)
-    _user["location"] = _location
+    _user["location"] = _location.to_json()
 
     set_user(message.from_id, _user)
     await message.answer("Location updated successfully!")
