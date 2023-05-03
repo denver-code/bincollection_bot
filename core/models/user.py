@@ -13,9 +13,13 @@ class Location(BaseModel):
 
 class Schedule(BaseModel):
     schedule: list
+    created_timestamp: int
 
-    def to_list(self):
-        return self.schedule
+    def to_json(self):
+        return {
+            "schedule": self.schedule,
+            "created_timestamp": self.created_timestamp
+        }
 
 
 class User(BaseModel):
@@ -29,6 +33,6 @@ class User(BaseModel):
             "id": self.id,
             "is_subscribed": self.is_subscribed,
             "location": self.location.to_json(),
-            "schedule": (self.schedule.to_list() if self.schedule != None else [])
+            "schedule": (self.schedule.to_json() if self.schedule != None else {})
         }
         return _user

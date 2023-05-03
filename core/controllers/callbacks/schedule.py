@@ -23,3 +23,7 @@ async def get_calendar_callback_handler(callback_query: CallbackQuery):
     await callback_query.message.answer_document(pdf_file)
     await callback_query.message.edit_text("Here's your calendar, enjoy!", reply_markup=None)
     
+
+async def get_next_collection_callback_handler(callback_query: CallbackQuery):
+    await callback_query.message.edit_text("Here's your calendar, enjoy!", reply_markup=None)
+    
