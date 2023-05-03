@@ -35,16 +35,22 @@ def expand_for_json(results: list[ScrapeResult]) -> list[dict]:
 
 class Scraper:
     BASE_URL: str = "https://www.adur-worthing.gov.uk"
+
+
+    def _parse_lxml(self, url) -> BeautifulSoup:
+        r = requests.get(self.BASE_URL + url)
+        if r.status_code != 200:
+            return False
+        return BeautifulSoup(r.text, "lxml")
+
+
     def scrape(
             self,
             url: str =
             "/bin-day/?brlu-selected-address=200004014421"
     ) -> list[ScrapeResult]:
         """scrapes the table data from the council website"""
-        r = requests.get(self.BASE_URL + url)
-        if r.status_code != 200:
-            return False
-        soup = BeautifulSoup(r.text, "lxml")
+        soup = self._parse_lxml(url)
         table = soup.find_all('table')[0]
 
         # loop through table rows and generate data
@@ -57,10 +63,7 @@ class Scraper:
             self,
             url: str = "/bin-day/?brlu-selected-address=200004014421"
     ):
-        r = requests.get(self.BASE_URL + url)
-        if r.status_code != 200:
-            return False
-        soup = BeautifulSoup(r.text, "lxml")
+        soup = self._parse_lxml(url)
         a = soup.find_all("a", {"class": "file-pdf"})[0]
         
         return a["href"]

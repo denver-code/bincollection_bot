@@ -1,8 +1,8 @@
 import aiohttp
 from io import BytesIO
-from aiogram.types import CallbackQuery, ReplyKeyboardRemove, ChatActions, InputFile
+from aiogram.types import CallbackQuery, ChatActions, InputFile
 from core.scraper import Scraper
-from core.redis import get_user, add_file
+from core.redis import get_user
 
 async def get_calendar_callback_handler(callback_query: CallbackQuery):
     await callback_query.message.bot.send_chat_action(callback_query.from_user.id, ChatActions.TYPING)
