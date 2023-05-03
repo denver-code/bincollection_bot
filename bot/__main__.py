@@ -19,10 +19,6 @@ async def set_default_commands(dp):
     ])
 
 
-async def on_startup():
-    await set_default_commands()
-
-
 def main():
     handlers_setup.setup(dp)
     executor.start_polling(dp, skip_updates=True, on_startup=set_default_commands)
