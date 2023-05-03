@@ -17,11 +17,6 @@ def get_user(id: str):
     return my_dict
 
 
-def add_file(filename: str, content):
-    # "calendars", {pdf_url.split("/")[-1]: pdf_content}
-    print(content)
-    r.set(filename, bytes(json.dumps({"content": content}), "utf-8"))
-
 def set_user(id: str, data: dict):
     r.set(id, bytes(json.dumps(data), "utf-8"))
 
