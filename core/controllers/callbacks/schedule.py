@@ -44,17 +44,6 @@ def add_extra(_message_text, days):
 async def get_next_collection_callback_handler(callback_query: CallbackQuery):
     days = next_collection_days(get_user(callback_query.from_user.id)["schedule"])
     _message_text = "Here's your next collection days:\n\n"
-    
-    # for day in days:
-    #     _day_text = f"*{day['bin_type']}* - *{day['readble']}*"
-    #     if day["status"] == "today":
-    #         _day_text += " (Today)"
-    #     elif day["status"] == "tomorrow":
-    #         _day_text += " (Tomorrow)"
-    #     elif day["status"] == "feature":
-    #         _day_text += f" (In {day['days_left']} days)"
-    #     _day_text += "\n"
-    #     _message_text += _day_text
 
     _message_text += add_extra(_message_text, days)
 
