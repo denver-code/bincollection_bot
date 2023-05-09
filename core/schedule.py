@@ -39,7 +39,7 @@ def add_extra(days: list) -> list:
     for day in days:
         day["status"] = check_date_status(day["collection_day"])
         if day["status"] not in ["today", "tomorrow"]:
-            day["days_left"] = (datetime.strptime(day["collection_day"], '%Y-%m-%d').date() - datetime.today().date()).days
+            day["status"] = (datetime.strptime(day["collection_day"], '%Y-%m-%d').date() - datetime.today().date()).days
         day["readble"] = datetime.strptime(day["collection_day"], '%Y-%m-%d').date().strftime('%d of %B, %A')
     return days
 
@@ -63,10 +63,10 @@ def is_actual(user_id: str) -> dict:
     _user["schedule"] = clean_schedule(_user["schedule"])
 
     if not _user["schedule"]:
+        print("fetch again")
         _schedule = fetch_schedule(user_id, _user["location"]["uprn"])
     
         _user["schedule"] = _schedule
-
     return _user
 
 

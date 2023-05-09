@@ -33,20 +33,28 @@ async def shutdown(dispatcher: Dispatcher):
 
 async def scheduler_job():
     subscribed = get_subscribed_users()
+
     for user in subscribed:
         user = is_actual(user["id"])
         days = next_collection_days(user["schedule"], extra = True)
         for day in days:
-            print(day)
+            _day_index = user["schedule"].index(day)
+
             if day["status"] == "tomorrow" and day["is_notified"] == False:
-                _day_index = user["schedule"].index(day)
+
                 day["is_notified"] = True
-                del day["readble"]
-                del day["days_left"]
-                del day["status"]
-                user["schedule"][_day_index] = day
+
                 await bot.send_message(user["id"], f"Hello, There's a {day['bin_type']} collection tomorrow!")
-        set_user(user["id"], user)
+
+            if "status" in day:
+                    _to_delete = ["status", "readble"]
+                    for key in _to_delete:
+                        del day[key]
+
+            user["schedule"][_day_index] = day
+
+            set_user(user["id"], user)
+    
 
 
 def main():

@@ -33,8 +33,8 @@ def add_extra(_message_text, days):
             _day_text += " (Today)"
         elif day["status"] == "tomorrow":
             _day_text += " (Tomorrow)"
-        elif day["status"] == "feature":
-            _day_text += f" (In {day['days_left']} days)"
+        else:
+            _day_text += f" (In {day['status']} days)"
         _day_text += "\n"
         _message_text += _day_text
     
