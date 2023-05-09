@@ -9,7 +9,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from core.config import settings
 
 from bot.handlers import setup as handlers_setup
-from core.redis import get_subscribed_users, set_user
+from core.redis import get_subscribed_users, set_user, ping as r_ping
 from core.schedule import clean_schedule, is_actual, next_collection_days
 
 
@@ -59,6 +59,7 @@ async def scheduler_job():
 
 
 def main():
+    print("RP", r_ping())
     handlers_setup.setup(dp)
     scheduler.add_job(scheduler_job, 'interval', seconds=3)
     scheduler.start()

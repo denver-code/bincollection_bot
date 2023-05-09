@@ -1,8 +1,12 @@
 import redis
 import json
 
-r = redis.Redis()
-
+r = redis.Redis(
+    host='redis',
+    port=6379,
+) 
+def ping():
+    return r.ping()
 
 def get_user(id: str):
     dict_bytes = r.get(id)
