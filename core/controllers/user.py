@@ -2,6 +2,7 @@ from aiogram import types, dispatcher
 
 from core.models.user import Location as LocationModel, User as UserModel
 from core.redis import is_user_exist, set_user, get_user
+from core.schedule import is_actual
 
 async def set_user_location_event(message: types.Message, state: dispatcher.FSMContext):
     await state.finish()
@@ -24,3 +25,9 @@ async def set_user_location_event(message: types.Message, state: dispatcher.FSMC
 
     set_user(message.from_id, _user)
     await message.answer("Location updated successfully!")
+
+
+async def fetch_user_event(message: types.Message, state: dispatcher.FSMContext):
+    is_actual(message.from_id, force=True)
+
+    await message.answer("User updated successfully!")

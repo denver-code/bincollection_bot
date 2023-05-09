@@ -22,8 +22,9 @@ dp = Dispatcher(bot, storage=storage)
 
 async def set_default_commands(dp):
     await dp.bot.set_my_commands([
-        types.BotCommand("start", "Start the bot"),
+        types.BotCommand("start", "Start the bot!"),
         types.BotCommand("menu", "Show all cool commands via menu!"),
+        types.BotCommand("fetch", "Update your schedule!"),
     ])
 
 async def shutdown(dispatcher: Dispatcher):

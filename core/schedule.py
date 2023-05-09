@@ -57,13 +57,12 @@ def next_collection_days(schedule: list, extra: bool = True) -> list:
     return days
 
 
-def is_actual(user_id: str) -> dict:
+def is_actual(user_id: str, force: bool = False) -> dict:
     _user = get_user(user_id)
 
     _user["schedule"] = clean_schedule(_user["schedule"])
 
-    if not _user["schedule"]:
-        print("fetch again")
+    if not _user["schedule"] or force:
         _schedule = fetch_schedule(user_id, _user["location"]["uprn"])
     
         _user["schedule"] = _schedule
