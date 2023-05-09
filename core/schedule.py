@@ -50,21 +50,24 @@ def collection_days(schedule: list) -> list:
     return days
 
 
-def next_collection_days(schedule: list) -> list:
+def next_collection_days(schedule: list, extra: bool = True) -> list:
     days = sort_schedule(schedule)[:2]
-    days = add_extra(days)
+    if extra:
+        days = add_extra(days)
     return days
 
 
-def is_actual(user_id: str) -> bool:
+def is_actual(user_id: str) -> dict:
     _user = get_user(user_id)
 
-    clean_schedule(_user["schedule"])
+    _user["schedule"] = clean_schedule(_user["schedule"])
 
     if not _user["schedule"]:
-        fetch_schedule(user_id, _user["location"]["uprn"])
+        _schedule = fetch_schedule(user_id, _user["location"]["uprn"])
+    
+        _user["schedule"] = _schedule
 
-    return True
+    return _user
 
 
 def fetch_schedule(user_id: int, uprn: str) -> dict:

@@ -47,7 +47,7 @@ async def get_next_collection_callback_handler(callback_query: CallbackQuery):
 
     _message_text += add_extra(_message_text, days)
 
-    _message_text += "\n\nIf you think that information are not right - send /fetch command to update your schedule!\nYou can also get your calendar using /calendar command!"
+    _message_text += "\n\nIf you think that information are not right - send /fetch command to update your schedule!"
     await callback_query.message.edit_text(_message_text, reply_markup=None, parse_mode="Markdown")
 
 
@@ -58,6 +58,6 @@ async def get_schedule_collection_callback_handler(callback_query: CallbackQuery
     
     _message_text += add_extra(_message_text, days)
 
-    _message_text += "\n\nIf you think that information are not right - send /fetch command to update your schedule!\nYou can also get your calendar using /calendar command!"
+    _message_text += "\n\nIf you think that information are not right - send /fetch command to update your schedule!"
     await callback_query.message.edit_text(_message_text, reply_markup=None, parse_mode="Markdown")
     

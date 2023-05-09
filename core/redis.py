@@ -17,6 +17,10 @@ def get_user(id: str):
     return my_dict
 
 
+def get_subscribed_users():
+    return [get_user(id) for id in r.keys() if get_user(id).get("is_subscribed")]
+
+
 def set_user(id: str, data: dict):
     r.set(id, bytes(json.dumps(data), "utf-8"))
 

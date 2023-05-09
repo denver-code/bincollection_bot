@@ -11,6 +11,7 @@ class ScrapeResult:
     bin_type: str
     bin_colour: str
     collection_days: list[str]
+    is_notified: bool = False
     datetime_parser: str = "%A %d %b %Y"
     datetime_format = "%Y-%m-%d"
 
@@ -26,7 +27,8 @@ def expand_for_json(results: list[ScrapeResult]) -> list[dict]:
     expanded_results = [{
         'bin_type': result.bin_type,
         'bin_colour': result.bin_colour,
-        'collection_day': collection_day
+        'collection_day': collection_day,
+        'is_notified': False,
     } for result in results
         for collection_day in result.parse_collection_days()
     ]
@@ -47,7 +49,7 @@ class Scraper:
     def scrape(
             self,
             url: str =
-            "/bin-day/?brlu-selected-address=200004014421"
+            "/bin-day/?brlu-selected-address="
     ) -> list[ScrapeResult]:
         """scrapes the table data from the council website"""
         soup = self._parse_lxml(url)
@@ -61,7 +63,7 @@ class Scraper:
 
     def scrape_calendar_link(
             self,
-            url: str = "/bin-day/?brlu-selected-address=200004014421"
+            url: str = "/bin-day/?brlu-selected-address="
     ):
         soup = self._parse_lxml(url)
         a = soup.find_all("a", {"class": "file-pdf"})[0]
