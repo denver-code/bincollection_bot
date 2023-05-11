@@ -6,6 +6,8 @@ services:
     build: .
     volumes:
       - .:/bincollection_bot
+    environment:
+      - TZ=Europe/London
 
   redis:
     image: redis:6-alpine
