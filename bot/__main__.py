@@ -23,11 +23,11 @@ dp = Dispatcher(bot, storage=storage)
 
 async def set_default_commands(dp):
     await dp.bot.set_my_commands([
-        types.BotCommand("start", "Start the bot!"),
-        types.BotCommand("menu", "Show all cool commands via menu!"),
-        types.BotCommand("fetch", "Update your schedule!"),
-        types.BotCommand("ping", "Check if bot in online!"),
-        types.BotCommand("time", "Check server time!"),
+        types.BotCommand("start", "Start the bot"),
+        types.BotCommand("menu", "Show all commands via menu"),
+        types.BotCommand("fetch", "Fetch your actual schedule from council website"),
+        types.BotCommand("ping", "Check if bot in online"),
+        types.BotCommand("time", "Check server time"),
     ])
 
 async def shutdown(dispatcher: Dispatcher):
