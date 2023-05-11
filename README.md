@@ -2,7 +2,7 @@
 At this moment bot support only Adur&Worthing Council information.  
 # ▹ Installation #
 > [!NOTE]  
-> For start make sure you have python and redis and mongodb installed on your machine.
+> For start make sure you have python and redis or docker installed on your machine.
 ``` Bash
 git clone https://github.com/denver-code/bincollection_bot
 cd bincollection_bot
