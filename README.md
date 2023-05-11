@@ -1,4 +1,5 @@
-# bincollection_bot
+# bincollection_bot. 
+[Try in real time](https://t.me/bincollection_bot)
 At this moment bot support only Adur&Worthing Council information.  
 # ▹ Installation #
 > [!NOTE]  
