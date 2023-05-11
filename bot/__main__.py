@@ -1,3 +1,4 @@
+import datetime
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils import executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -25,6 +26,8 @@ async def set_default_commands(dp):
         types.BotCommand("start", "Start the bot!"),
         types.BotCommand("menu", "Show all cool commands via menu!"),
         types.BotCommand("fetch", "Update your schedule!"),
+        types.BotCommand("ping", "Check if bot in online!"),
+        types.BotCommand("time", "Check server time!"),
     ])
 
 async def shutdown(dispatcher: Dispatcher):
@@ -57,15 +60,20 @@ async def scheduler_job():
             set_user(user["id"], user)
     
 
+@dp.message_handler(commands=['ping'])
+async def ping(message: types.Message):
+    await message.answer("Pong!")
+
+@dp.message_handler(commands=['time'])
+async def time(message: types.Message):
+    await message.answer(f"Server time is: {str(datetime.datetime.now())}")
 
 def main():
-    print("RP", r_ping())
     handlers_setup.setup(dp)
-    scheduler.add_job(scheduler_job, 'interval', seconds=3)
+    scheduler.add_job(scheduler_job, 'cron', hour=20, minute=00)
     scheduler.start()
     executor.start_polling(dp, loop=loop, skip_updates=True, on_startup=set_default_commands, on_shutdown=shutdown)
 
     
 if __name__ == '__main__':
     main()
-""" """ """ """  """ """ """ """
